@@ -1,0 +1,18 @@
+- content_for :head do
+  %title JS Logo!
+
+%h1 JS Logo
+
+#input
+  %h2 Code
+  #help
+    %a#help_link{:href => '/help.html', :target => '_blank'}
+      help
+  #controls
+    %button#go   Go
+    %button#stop Stop
+  %textarea#code{:placeholder => 'Type your program here...'}
+
+#output
+  .hint
+    Click "go" to start your program!
