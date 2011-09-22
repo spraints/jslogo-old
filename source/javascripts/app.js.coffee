@@ -1,4 +1,11 @@
 #= require 'jquery'
+#= require 'logo'
 
 $ ->
-  alert 'loaded!'
+  $('#go').click ->
+    try
+      container = $ '<code></code>'
+      container.text JSON.stringify(logo.parse($('#code').val()))
+      $('#output').empty().append(container)
+    catch error
+      $('#output').empty().text("" + error)

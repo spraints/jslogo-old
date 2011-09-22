@@ -1,7 +1,0 @@
-{
-    "name": "jslogo"
-  , "version": "0.0.1"
-  , "dependencies": {
-      "jison" : ">0.0.0"
-  }
-}
