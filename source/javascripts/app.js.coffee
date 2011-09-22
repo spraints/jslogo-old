@@ -1,0 +1,4 @@
+#= require 'jquery'
+
+$ ->
+  alert 'loaded!'
