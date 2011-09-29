@@ -3,8 +3,8 @@ var logo = (function(){
 
 var parser = {trace: function trace() { },
 yy: {},
-symbols_: {"error":2,"expressions":3,"e":4,"FORWARD":5,"NUMBER":6,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"FORWARD",6:"NUMBER"},
+symbols_: {"error":2,"expressions":3,"e":4,"NAME":5,"NUMBER":6,"$accept":0,"$end":1},
+terminals_: {2:"error",5:"NAME",6:"NUMBER"},
 productions_: [0,[3,1],[4,2]],
 performAction: function anonymous(yytext,yyleng,yylineno,yy,yystate,$$,_$) {
 
@@ -12,7 +12,7 @@ var $0 = $$.length - 1;
 switch (yystate) {
 case 1: return $$[$0]; 
 break;
-case 2: this.$ = { 'command': 'forward', 'distance': $$[$0] }; 
+case 2: this.$ = { 'command': $$[$0-1], 'args': [$$[$0]] }; 
 break;
 }
 },
@@ -328,16 +328,14 @@ case 1:return 6;
 break;
 case 2:return 5;
 break;
-case 3:return 5;
+case 3:/* whitespace */
 break;
-case 4:/* whitespace */
-break;
-case 5:return 'ENDOFFILE';
+case 4:return 'ENDOFFILE';
 break;
 }
 };
-lexer.rules = [/^;.*/,/^[0-9]+\b/,/^[fF][oO][rR][wW][aA][rR][dD]/,/^[fF][dD]/,/^\s+/,/^$/];
-lexer.conditions = {"INITIAL":{"rules":[0,1,2,3,4,5],"inclusive":true}};return lexer;})()
+lexer.rules = [/^;.*/,/^[0-9]+\b/,/^[a-zA-Z]+/,/^\s+/,/^$/];
+lexer.conditions = {"INITIAL":{"rules":[0,1,2,3,4],"inclusive":true}};return lexer;})()
 parser.lexer = lexer;
 return parser;
 })();

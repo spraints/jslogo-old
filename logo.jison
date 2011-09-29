@@ -1,12 +1,14 @@
 /* http://en.wikipedia.org/wiki/List_of_Logo_Commands */
 
 %lex
+
+NAME      [a-zA-Z]+
+
 %%
 
 ";".*                          /* comment */
 [0-9]+\b                       return 'NUMBER';
-[fF][oO][rR][wW][aA][rR][dD]   return 'FORWARD';
-[fF][dD]                       return 'FORWARD';
+{NAME}                         return 'NAME';
 \s+                            /* whitespace */
 <<EOF>>                        return 'ENDOFFILE';
 
@@ -25,6 +27,6 @@ expressions
     ;
 
 e
-    : FORWARD NUMBER
-        { $$ = { 'command': 'forward', 'distance': $2 }; }
+    : NAME NUMBER
+        { $$ = { 'command': $1, 'args': [$2] }; }
     ;
