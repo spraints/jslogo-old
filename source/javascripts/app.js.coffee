@@ -8,4 +8,6 @@ $ ->
       container.text JSON.stringify(logo.parse($('#code').val()))
       $('#output').empty().append(container)
     catch error
-      $('#output').empty().text("" + error)
+      $('<pre></pre>').text("" + error).appendTo(
+        $('#output').empty()
+      )
