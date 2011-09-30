@@ -3,6 +3,10 @@
 #= require 'clogo'
 
 $ ->
+  $('#code').change ->
+    # TODO -- find a better event (change only triggers on blur)
+    # TODO -- store in localstorage (also, restore from it on page load!)
+
   $('#go').click ->
     try
       container = $ '<code></code>'
