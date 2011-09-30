@@ -1,11 +1,15 @@
 #= require 'jquery'
 #= require 'logo'
 #= require 'clogo'
+#= require 'modernizr'
 
 $ ->
-  $('#code').change ->
-    # TODO -- find a better event (change only triggers on blur)
-    # TODO -- store in localstorage (also, restore from it on page load!)
+  if Modernizr.localstorage
+    if $('#code').val() == ''
+      $('#code').val(window.localStorage.getItem('code'))
+    $('#code').change ->
+      # TODO -- find a better event (change only triggers on blur)
+      window.localStorage.setItem('code', $(this).val())
 
   $('#go').click ->
     try
