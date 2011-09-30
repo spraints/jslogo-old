@@ -10,6 +10,8 @@ NUMBER    [0-9]+
 ";".*                          /* comment */
 {NUMBER}                       return 'NUMBER';
 {NAME}                         return 'NAME';
+'['                            return 'START_LIST';
+']'                            return 'END_LIST';
 \s+                            /*return 'SPACE';*/
 
 /lex
@@ -38,4 +40,6 @@ expressions
 e
     : NAME NUMBER
         { $$ = Logo.buildCommand($1, $2); }
+    | NAME START_LIST expressions END_LIST
+        { $$ = Logo.buildLoop($1, $3); }
     ;

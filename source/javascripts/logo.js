@@ -3,9 +3,9 @@ var logo = (function(){
 
 var parser = {trace: function trace() { },
 yy: {},
-symbols_: {"error":2,"program":3,"expressions":4,"e":5,"NAME":6,"NUMBER":7,"$accept":0,"$end":1},
-terminals_: {2:"error",6:"NAME",7:"NUMBER"},
-productions_: [0,[3,0],[3,1],[4,2],[4,1],[5,2]],
+symbols_: {"error":2,"program":3,"expressions":4,"e":5,"NAME":6,"NUMBER":7,"START_LIST":8,"END_LIST":9,"$accept":0,"$end":1},
+terminals_: {2:"error",6:"NAME",7:"NUMBER",8:"START_LIST",9:"END_LIST"},
+productions_: [0,[3,0],[3,1],[4,2],[4,1],[5,2],[5,4]],
 performAction: function anonymous(yytext,yyleng,yylineno,yy,yystate,$$,_$) {
 
 var $0 = $$.length - 1;
@@ -18,11 +18,13 @@ case 3: this.$ = $$[$0-1].concat($$[$0]);
 break;
 case 4: this.$ = [$$[$0]]; 
 break;
-case 5: this.$ = { 'command': $$[$0-1], 'args': [$$[$0]] }; 
+case 5: this.$ = Logo.buildCommand($$[$0-1], $$[$0]); 
+break;
+case 6: this.$ = Logo.buildLoop($$[$0-3], $$[$0-1]); 
 break;
 }
 },
-table: [{1:[2,1],3:1,4:2,5:3,6:[1,4]},{1:[3]},{1:[2,2],5:5,6:[1,4]},{1:[2,4],6:[2,4]},{7:[1,6]},{1:[2,3],6:[2,3]},{1:[2,5],6:[2,5]}],
+table: [{1:[2,1],3:1,4:2,5:3,6:[1,4]},{1:[3]},{1:[2,2],5:5,6:[1,4]},{1:[2,4],6:[2,4],9:[2,4]},{7:[1,6],8:[1,7]},{1:[2,3],6:[2,3],9:[2,3]},{1:[2,5],6:[2,5],9:[2,5]},{4:8,5:3,6:[1,4]},{5:5,6:[1,4],9:[1,9]},{1:[2,6],6:[2,6],9:[2,6]}],
 defaultActions: {},
 parseError: function parseError(str, hash) {
     throw new Error(str);
@@ -334,12 +336,16 @@ case 1:return 7;
 break;
 case 2:return 6;
 break;
-case 3:/*return 'SPACE';*/
+case 3:return 8;
+break;
+case 4:return 9;
+break;
+case 5:/*return 'SPACE';*/
 break;
 }
 };
-lexer.rules = [/^;.*/,/^[0-9]+/,/^[a-zA-Z]+/,/^\s+/];
-lexer.conditions = {"INITIAL":{"rules":[0,1,2,3],"inclusive":true}};return lexer;})()
+lexer.rules = [/^;.*/,/^[0-9]+/,/^[a-zA-Z]+/,/^\[/,/^\]/,/^\s+/];
+lexer.conditions = {"INITIAL":{"rules":[0,1,2,3,4,5],"inclusive":true}};return lexer;})()
 parser.lexer = lexer;
 return parser;
 })();
