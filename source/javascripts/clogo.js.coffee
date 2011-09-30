@@ -2,8 +2,8 @@ class Command
   constructor: (@name, @args) ->
 
 class Loop
-  constructor: (@name, @commands) ->
+  constructor: (@name, @arg, @commands) ->
 
 window.Logo =
   buildCommand: (name, args...) -> new Command(name, args)
-  buildLoop:    (name, commands) -> new Loop(name, commands)
+  buildLoop:    (name, arg, commands) -> new Loop(name, arg, commands)

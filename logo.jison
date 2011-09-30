@@ -40,6 +40,10 @@ expressions
 e
     : NAME NUMBER
         { $$ = Logo.buildCommand($1, $2); }
+    | NAME
+        { $$ = Logo.buildCommand($1); }
     | NAME START_LIST expressions END_LIST
-        { $$ = Logo.buildLoop($1, $3); }
+        { $$ = Logo.buildLoop($1, null, $3); }
+    | NAME NUMBER START_LIST expressions END_LIST
+        { $$ = Logo.buildLoop($1, $2, $4); }
     ;

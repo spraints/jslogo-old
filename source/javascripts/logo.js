@@ -5,7 +5,7 @@ var parser = {trace: function trace() { },
 yy: {},
 symbols_: {"error":2,"program":3,"expressions":4,"e":5,"NAME":6,"NUMBER":7,"START_LIST":8,"END_LIST":9,"$accept":0,"$end":1},
 terminals_: {2:"error",6:"NAME",7:"NUMBER",8:"START_LIST",9:"END_LIST"},
-productions_: [0,[3,0],[3,1],[4,2],[4,1],[5,2],[5,4]],
+productions_: [0,[3,0],[3,1],[4,2],[4,1],[5,2],[5,1],[5,4],[5,5]],
 performAction: function anonymous(yytext,yyleng,yylineno,yy,yystate,$$,_$) {
 
 var $0 = $$.length - 1;
@@ -20,11 +20,15 @@ case 4: this.$ = [$$[$0]];
 break;
 case 5: this.$ = Logo.buildCommand($$[$0-1], $$[$0]); 
 break;
-case 6: this.$ = Logo.buildLoop($$[$0-3], $$[$0-1]); 
+case 6: this.$ = Logo.buildCommand($$[$0]); 
+break;
+case 7: this.$ = Logo.buildLoop($$[$0-3], null, $$[$0-1]); 
+break;
+case 8: this.$ = Logo.buildLoop($$[$0-4], $$[$0-3], $$[$0-1]); 
 break;
 }
 },
-table: [{1:[2,1],3:1,4:2,5:3,6:[1,4]},{1:[3]},{1:[2,2],5:5,6:[1,4]},{1:[2,4],6:[2,4],9:[2,4]},{7:[1,6],8:[1,7]},{1:[2,3],6:[2,3],9:[2,3]},{1:[2,5],6:[2,5],9:[2,5]},{4:8,5:3,6:[1,4]},{5:5,6:[1,4],9:[1,9]},{1:[2,6],6:[2,6],9:[2,6]}],
+table: [{1:[2,1],3:1,4:2,5:3,6:[1,4]},{1:[3]},{1:[2,2],5:5,6:[1,4]},{1:[2,4],6:[2,4],9:[2,4]},{1:[2,6],6:[2,6],7:[1,6],8:[1,7],9:[2,6]},{1:[2,3],6:[2,3],9:[2,3]},{1:[2,5],6:[2,5],8:[1,8],9:[2,5]},{4:9,5:3,6:[1,4]},{4:10,5:3,6:[1,4]},{5:5,6:[1,4],9:[1,11]},{5:5,6:[1,4],9:[1,12]},{1:[2,7],6:[2,7],9:[2,7]},{1:[2,8],6:[2,8],9:[2,8]}],
 defaultActions: {},
 parseError: function parseError(str, hash) {
     throw new Error(str);
