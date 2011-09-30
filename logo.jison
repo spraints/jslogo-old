@@ -37,5 +37,5 @@ expressions
 
 e
     : NAME NUMBER
-        { $$ = { 'command': $1, 'args': [$2] }; }
+        { $$ = Logo.buildCommand($1, $2); }
     ;
