@@ -25,12 +25,12 @@ program
     :
         { return []; }
     | expressions
-        { return [$1]; }
+        { return $1; }
     ;
 
 expressions
     : expressions e
-        { $$ = [$1, $2]; }
+        { $$ = $1.concat($2); }
     | e
         { $$ = [$1]; }
     ;

@@ -12,9 +12,9 @@ var $0 = $$.length - 1;
 switch (yystate) {
 case 1: return []; 
 break;
-case 2: return [$$[$0]]; 
+case 2: return $$[$0]; 
 break;
-case 3: this.$ = [$$[$0-1], $$[$0]]; 
+case 3: this.$ = $$[$0-1].concat($$[$0]); 
 break;
 case 4: this.$ = [$$[$0]]; 
 break;
