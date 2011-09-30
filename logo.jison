@@ -10,7 +10,7 @@ NUMBER    [0-9]+
 ";".*                          /* comment */
 {NUMBER}                       return 'NUMBER';
 {NAME}                         return 'NAME';
-\s+                            return 'SPACE';
+\s+                            /*return 'SPACE';*/
 
 /lex
 
@@ -23,19 +23,19 @@ NUMBER    [0-9]+
 
 program
     :
-        { return ['empty']; }
+        { return []; }
     | expressions
         { return [$1]; }
     ;
 
 expressions
-    : expressions SPACE e
-        { $$ = [$1, $3]; }
+    : expressions e
+        { $$ = [$1, $2]; }
     | e
         { $$ = [$1]; }
     ;
 
 e
-    : NAME SPACE NUMBER
-        { $$ = { 'command': $1, 'args': [$3] }; }
+    : NAME NUMBER
+        { $$ = { 'command': $1, 'args': [$2] }; }
     ;

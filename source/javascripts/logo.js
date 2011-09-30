@@ -3,26 +3,26 @@ var logo = (function(){
 
 var parser = {trace: function trace() { },
 yy: {},
-symbols_: {"error":2,"program":3,"expressions":4,"SPACE":5,"e":6,"NAME":7,"NUMBER":8,"$accept":0,"$end":1},
-terminals_: {2:"error",5:"SPACE",7:"NAME",8:"NUMBER"},
-productions_: [0,[3,0],[3,1],[4,3],[4,1],[6,3]],
+symbols_: {"error":2,"program":3,"expressions":4,"e":5,"NAME":6,"NUMBER":7,"$accept":0,"$end":1},
+terminals_: {2:"error",6:"NAME",7:"NUMBER"},
+productions_: [0,[3,0],[3,1],[4,2],[4,1],[5,2]],
 performAction: function anonymous(yytext,yyleng,yylineno,yy,yystate,$$,_$) {
 
 var $0 = $$.length - 1;
 switch (yystate) {
-case 1: return ['empty']; 
+case 1: return []; 
 break;
 case 2: return [$$[$0]]; 
 break;
-case 3: this.$ = [$$[$0-2], $$[$0]]; 
+case 3: this.$ = [$$[$0-1], $$[$0]]; 
 break;
 case 4: this.$ = [$$[$0]]; 
 break;
-case 5: this.$ = { 'command': $$[$0-2], 'args': [$$[$0]] }; 
+case 5: this.$ = { 'command': $$[$0-1], 'args': [$$[$0]] }; 
 break;
 }
 },
-table: [{1:[2,1],3:1,4:2,6:3,7:[1,4]},{1:[3]},{1:[2,2],5:[1,5]},{1:[2,4],5:[2,4]},{5:[1,6]},{6:7,7:[1,4]},{8:[1,8]},{1:[2,3],5:[2,3]},{1:[2,5],5:[2,5]}],
+table: [{1:[2,1],3:1,4:2,5:3,6:[1,4]},{1:[3]},{1:[2,2],5:5,6:[1,4]},{1:[2,4],6:[2,4]},{7:[1,6]},{1:[2,3],6:[2,3]},{1:[2,5],6:[2,5]}],
 defaultActions: {},
 parseError: function parseError(str, hash) {
     throw new Error(str);
@@ -330,11 +330,11 @@ var YYSTATE=YY_START
 switch($avoiding_name_collisions) {
 case 0:/* comment */
 break;
-case 1:return 8;
+case 1:return 7;
 break;
-case 2:return 7;
+case 2:return 6;
 break;
-case 3:return 5;
+case 3:/*return 'SPACE';*/
 break;
 }
 };
