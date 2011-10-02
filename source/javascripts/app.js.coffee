@@ -11,12 +11,15 @@ $ ->
       # TODO -- find a better event (change only triggers on blur)
       window.localStorage.setItem('code', $(this).val())
 
-  $('#go').click ->
+  parse = (code) ->
     try
-      container = $ '<code></code>'
-      container.text JSON.stringify(logo.parse($('#code').val()))
-      $('#output').empty().append(container)
+      logo.parse code
     catch error
       $('<pre></pre>').text("" + error).appendTo(
         $('#output').empty()
       )
+      null
+
+  $('#go').click ->
+    if program = parse($('#code').val())
+      $('<code></code>').text(JSON.stringify(program)).appendTo($('#output'))
